@@ -1,5 +1,5 @@
 # Name of the project.
-PROJECT = elementumorg
+PROJECT = projectxorg
 IMAGE = cross-compiler
 
 # Set binaries and platform specific variables.
