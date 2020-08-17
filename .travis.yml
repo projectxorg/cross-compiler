@@ -1,0 +1,28 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  - PLATFORM=android-arm
+  - PLATFORM=android-x64
+  - PLATFORM=android-x86
+  - PLATFORM=darwin-x64
+  - PLATFORM=linux-arm
+  - PLATFORM=linux-armv7
+  - PLATFORM=linux-arm64
+  - PLATFORM=linux-x64
+  - PLATFORM=linux-x86
+  - PLATFORM=windows-x64
+  - PLATFORM=windows-x86
+
+before_script:
+  - make base
+
+script:
+  - make $PLATFORM
+  - |
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ]; then
+      docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      make push
+    fi
