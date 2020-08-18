@@ -5,7 +5,6 @@ services:
 
 env:
   - PLATFORM=android-arm
-  - PLATFORM=android-arm64
   - PLATFORM=android-x64
   - PLATFORM=android-x86
   - PLATFORM=darwin-x64
@@ -24,6 +23,6 @@ script:
   - make $PLATFORM
   - |
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ]; then
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
       make push
     fi
