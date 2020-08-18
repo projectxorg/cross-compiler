@@ -24,7 +24,7 @@ before_script:
   script:
     - make $PLATFORM
   after_script:
-    - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+    - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" --password-stdin
     - make push
   only:
     - tags
